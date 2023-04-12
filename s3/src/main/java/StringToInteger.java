@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public interface StringToInteger {
-}
+//@FunctionalInterface
+//public interface StringToInteger {
+//    Integer convertir(String str);
+//}
