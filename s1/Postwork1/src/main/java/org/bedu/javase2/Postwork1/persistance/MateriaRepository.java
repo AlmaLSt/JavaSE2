@@ -1,2 +1,7 @@
-package org.bedu.javase2.Postwork1.persistance;public interface MateriaRepository {
+package org.bedu.javase2.Postwork1.persistance;
+
+import org.bedu.javase2.Postwork1.model.Materia;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MateriaRepository extends CrudRepository<Materia, Long> {
 }
