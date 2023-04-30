@@ -13,7 +13,7 @@ public class Estudiante {
     @Column(name = "id")
     private Long id;
     @Column(name = "nombre_completo")
-    @Size(max = 45)
+    @Size(max = 45 )
     private String nombre_completo;
 
     public Long getId() {

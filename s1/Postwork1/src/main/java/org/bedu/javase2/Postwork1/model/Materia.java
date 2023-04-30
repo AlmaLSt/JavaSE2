@@ -4,6 +4,7 @@ package org.bedu.javase2.Postwork1.model;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table (name = "materias")
@@ -34,17 +35,23 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public Materia(Long id, String nombre) {
+    public Materia() {
         this.id = id;
         this.nombre = nombre;
     }
+
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Materia)) return false;
+        Materia materia = (Materia) o;
+        return id.equals(materia.id) &&
+                nombre.equals(materia.nombre);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        return Objects.hash(id, nombre);
     }
+
 }

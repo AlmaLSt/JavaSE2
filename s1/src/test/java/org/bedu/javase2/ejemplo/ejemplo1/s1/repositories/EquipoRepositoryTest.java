@@ -18,22 +18,40 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EquipoRepositoryTest {
-     @Autowired
+    @Autowired
     private EquipoRepository repository;
 
-     @BeforeAll
-    void cleanDatabase(){
-         repository.deleteAll();
-     }
+    @BeforeAll
+    void cleanDatabase() {
+        repository.deleteAll();
+    }
 
-     @Test
+    @Test
     @DisplayName("Guardado")
-    void canSave(){
-         Equipo e = new Equipo();
-         e.setNombre("prueba");
+    void canSave() {
+        Equipo e = new Equipo();
+        e.setNombre("prueba");
 
-         e = repository.save(e);
+        e = repository.save(e);
 
-         assertNotNull(e.getId());
-     }
+        assertNotNull(e.getId());
+    }
+
+    @Test
+    @DisplayName("Busca por nombre")
+    void canFindByName() {
+        final String nombre = "Prueba búsqueda";
+
+        Equipo equipo = new Equipo();
+        equipo.setNombre(nombre);
+
+        repository.save(equipo);
+
+        Iterable<Equipo> listaEquipos = repository.findAllByNombre(nombre);
+        assertTrue(listaEquipos.iterator().hasNext());
+
+        Equipo equipoRecuperado = listaEquipos.iterator().next();
+        assertEquals(equipo, equipoRecuperado);
+    }
+
 }
